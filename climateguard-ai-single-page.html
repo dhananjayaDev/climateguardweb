@@ -242,13 +242,14 @@
         }
         
         .floating-nav {
-            backdrop-filter: blur(24px);
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             border-radius: 16px;
             padding: 1rem 2rem;
             display: flex;
@@ -263,16 +264,17 @@
         }
         
         .floating-nav:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-3px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
         }
         
         .floating-nav a {
-            color: rgba(255, 255, 255, 0.8);
+            color: #000000;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
             font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 0.75rem 1.25rem;
             border-radius: 12px;
@@ -288,14 +290,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1));
             opacity: 0;
             transition: all 0.3s ease;
             border-radius: 12px;
         }
         
         .floating-nav a:hover {
-            color: #ffffff;
+            color: #16a34a;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
             transform: translateY(-1px);
         }
         
@@ -308,7 +311,7 @@
         }
         
         .floating-nav a:focus {
-            outline: 2px solid rgba(16, 185, 129, 0.5);
+            outline: 2px solid rgba(34, 197, 94, 0.5);
             outline-offset: 2px;
         }
 
