@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateGuard AI - Early Warning System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        /* Google Fonts Material Symbols */
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Section Styles */
+        section {
+            position: relative;
+            display: block;
+            width: 100%;
+            clear: both;
+        }
+        
+        .gradient-hero {
+            height: 100vh;
+            min-height: 100vh;
+            max-height: 100vh;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-hero);
+        }
+        
+        #problem, #solution, #features, #impact, #workflow, #future {
+            position: relative;
+            background-color: white;
+            width: 100%;
+            clear: both;
+        }
+        
+        #problem {
+            background-color: hsl(var(--muted));
+        }
+        
+        #solution {
+            background: var(--gradient-subtle);
+        }
+        
+        #features {
+            background-color: hsl(var(--muted));
+        }
+        
+        #impact {
+            background: var(--gradient-tech);
+        }
+        
+        #workflow {
+            background-color: hsl(var(--card));
+        }
+        
+        #future {
+            background: var(--gradient-subtle);
+        }
+        
+        /* Gradient Backgrounds - Exact React App Match */
+        .gradient-hero {
+            background: var(--gradient-hero);
+        }
+        
+        .gradient-climate {
+            background: var(--gradient-climate);
+        }
+        
+        .gradient-tech {
+            background: var(--gradient-tech);
+        }
+        
+        .gradient-subtle {
+            background: var(--gradient-subtle);
+        }
+        
+        /* Shadow Styles - Exact React App Match */
+        .shadow-climate {
+            box-shadow: var(--shadow-climate);
+        }
+        
+        .shadow-tech {
+            box-shadow: var(--shadow-tech);
+        }
+        
+        .shadow-elegant {
+            box-shadow: var(--shadow-elegant);
+        }
+        
+        .shadow-glow {
+            box-shadow: var(--shadow-glow);
+        }
+        
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px hsl(134 61% 41% / 0.3); }
+            50% { box-shadow: 0 0 30px hsl(134 61% 41% / 0.6); }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.4s ease-out;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        /* Utility Classes */
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        .hero-padding {
+            padding: 6rem 0;
+        }
+        
+        .card {
+            background: hsl(0 0% 100%);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px -2px hsl(213 28% 15% / 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 10px 30px -5px hsl(154 55% 18% / 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .btn {
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .grid {
+            gap: 2rem;
+        }
+        
+        .text-content {
+            line-height: 1.7;
+        }
+        
+        /* Floating Navigation */
+        nav.fixed {
+            z-index: 99999 !important;
+        }
+        
+        .floating-nav {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            width: fit-content;
+            margin: 0 auto;
+            z-index: 99999;
+            position: relative;
+        }
+        
+        .floating-nav:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .floating-nav a {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            padding: 0.25rem 0.5rem;
+        }
+        
+        .floating-nav a:hover {
+            color: #10b981;
+            transform: translateY(-1px);
+        }
+        
+        /* Better mobile responsiveness */
+        @media (max-width: 768px) {
+            .floating-nav {
+                padding: 0.5rem 1rem;
+                gap: 1rem;
+            }
+            
+            .floating-nav a {
+                font-size: 0.75rem;
+                padding: 0.25rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        /* Color Variables - Exact React App Match */
+        :root {
+            /* Base colors - Clean whites and deep grays */
+            --background: 0 0% 100%;
+            --foreground: 213 28% 15%;
+            --card: 0 0% 100%;
+            --card-foreground: 213 28% 15%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 213 28% 15%;
+            
+            /* Climate-Tech Primary - Deep forest green */
+            --primary: 154 55% 18%;
+            --primary-foreground: 0 0% 100%;
+            
+            /* Climate-Tech Secondary - Ocean blue */
+            --secondary: 210 95% 45%;
+            --secondary-foreground: 0 0% 100%;
+            
+            /* Tech accent - Bright climate green */
+            --accent: 134 61% 41%;
+            --accent-foreground: 0 0% 100%;
+            
+            /* Muted tones */
+            --muted: 210 15% 96%;
+            --muted-foreground: 213 16% 60%;
+            
+            --destructive: 0 72% 51%;
+            --destructive-foreground: 0 0% 100%;
+            
+            --border: 210 15% 92%;
+            --input: 210 15% 94%;
+            --ring: 154 55% 18%;
+            
+            --radius: 0.75rem;
+            
+            /* Climate-Tech Gradients */
+            --gradient-hero: linear-gradient(135deg, hsl(154 55% 18%), hsl(210 95% 45%));
+            --gradient-climate: linear-gradient(90deg, hsl(134 61% 41%), hsl(154 55% 18%));
+            --gradient-tech: linear-gradient(135deg, hsl(210 95% 45%), hsl(220 91% 60%));
+            --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 15% 98%));
+            
+            /* Climate-Tech Shadows */
+            --shadow-climate: 0 10px 30px -5px hsl(154 55% 18% / 0.2);
+            --shadow-tech: 0 10px 30px -5px hsl(210 95% 45% / 0.2);
+            --shadow-elegant: 0 4px 20px -2px hsl(213 28% 15% / 0.08);
+            --shadow-glow: 0 0 40px hsl(134 61% 41% / 0.3);
+            
+            /* Smooth transitions */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* Tailwind Utility Classes - Exact React App Match */
+        .bg-background { background-color: hsl(var(--background)); }
+        .text-foreground { color: hsl(var(--foreground)); }
+        .bg-primary { background-color: hsl(var(--primary)); }
+        .text-primary { color: hsl(var(--primary)); }
+        .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+        .bg-secondary { background-color: hsl(var(--secondary)); }
+        .text-secondary { color: hsl(var(--secondary)); }
+        .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+        .bg-accent { background-color: hsl(var(--accent)); }
+        .text-accent { color: hsl(var(--accent)); }
+        .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+        .bg-muted { background-color: hsl(var(--muted)); }
+        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+        .bg-destructive { background-color: hsl(var(--destructive)); }
+        .text-destructive { color: hsl(var(--destructive)); }
+        .text-destructive-foreground { color: hsl(var(--destructive-foreground)); }
+        .bg-card { background-color: hsl(var(--card)); }
+        .text-card-foreground { color: hsl(var(--card-foreground)); }
+        .border { border-color: hsl(var(--border)); }
+        
+        /* Layout Classes */
+        .min-h-screen { min-height: 100vh; }
+        .h-screen { height: 100vh; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .h-auto { height: auto; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-md { max-width: 28rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-8 { padding-top: 2rem; }
+        .pt-12 { padding-top: 3rem; }
+        .pt-16 { padding-top: 4rem; }
+        .pb-2 { padding-bottom: 0.5rem; }
+        .pb-4 { padding-bottom: 1rem; }
+        .pb-6 { padding-bottom: 1.5rem; }
+        .pb-8 { padding-bottom: 2rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mb-20 { margin-bottom: 5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-12 { margin-top: 3rem; }
+        .mt-16 { margin-top: 4rem; }
+        .mt-20 { margin-top: 5rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+        .gap-16 { gap: 4rem; }
+        
+        /* Flexbox Classes */
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-start { justify-content: flex-start; }
+        .justify-between { justify-content: space-between; }
+        .flex-col { flex-direction: column; }
+        .flex-row { flex-direction: row; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .flex-1 { flex: 1 1 0%; }
+        
+        /* Grid Classes */
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        
+        /* Position Classes */
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .top-8 { top: 2rem; }
+        .top-16 { top: 4rem; }
+        .top-20 { top: 5rem; }
+        .bottom-4 { bottom: 1rem; }
+        .bottom-6 { bottom: 1.5rem; }
+        .bottom-8 { bottom: 2rem; }
+        .left-1\/2 { left: 50%; }
+        .right-4 { right: 1rem; }
+        .right-6 { right: 1.5rem; }
+        .right-8 { right: 2rem; }
+        .-top-4 { top: -1rem; }
+        .-top-6 { top: -1.5rem; }
+        .-bottom-4 { bottom: -1rem; }
+        .-bottom-6 { bottom: -1.5rem; }
+        .-right-4 { right: -1rem; }
+        .-right-6 { right: -1.5rem; }
+        .-left-4 { left: -1rem; }
+        .-left-6 { left: -1.5rem; }
+        .-translate-x-1\/2 { transform: translateX(-50%); }
+        .-translate-y-1\/2 { transform: translateY(-50%); }
+        .transform { transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
+        
+        /* Text Classes */
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-base { font-size: 1rem; line-height: 1.5rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .text-7xl { font-size: 4.5rem; line-height: 1; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.625; }
+        .tracking-wide { letter-spacing: 0.025em; }
+        
+        /* Border Classes */
+        .border { border-width: 1px; }
+        .border-l-4 { border-left-width: 4px; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-\[5px\] { border-radius: 5px; }
+        
+        /* Background Classes */
+        .bg-gradient-to-t { background-image: linear-gradient(to top, var(--tw-gradient-stops)); }
+        .bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+        .from-primary { --tw-gradient-from: var(--primary); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(21, 94, 117, 0)); }
+        .from-secondary { --tw-gradient-from: var(--secondary); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0)); }
+        .from-transparent { --tw-gradient-from: transparent; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0)); }
+        .to-transparent { --tw-gradient-to: transparent; }
+        .opacity-10 { opacity: 0.1; }
+        .opacity-20 { opacity: 0.2; }
+        .opacity-30 { opacity: 0.3; }
+        .opacity-60 { opacity: 0.6; }
+        .opacity-70 { opacity: 0.7; }
+        .opacity-80 { opacity: 0.8; }
+        .opacity-90 { opacity: 0.9; }
+        
+        /* Size Classes */
+        .h-4 { height: 1rem; }
+        .h-5 { height: 1.25rem; }
+        .h-6 { height: 1.5rem; }
+        .h-8 { height: 2rem; }
+        .h-10 { height: 2.5rem; }
+        .h-12 { height: 3rem; }
+        .h-16 { height: 4rem; }
+        .h-20 { height: 5rem; }
+        .w-4 { width: 1rem; }
+        .w-5 { width: 1.25rem; }
+        .w-6 { width: 1.5rem; }
+        .w-8 { width: 2rem; }
+        .w-10 { width: 2.5rem; }
+        .w-12 { width: 3rem; }
+        .w-16 { width: 4rem; }
+        .w-20 { width: 5rem; }
+        .w-1\.5 { width: 0.375rem; }
+        .h-1\.5 { height: 0.375rem; }
+        
+        /* Spacing Classes */
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .space-y-12 > * + * { margin-top: 3rem; }
+        .space-x-2 > * + * { margin-left: 0.5rem; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .space-x-8 > * + * { margin-left: 2rem; }
+        
+        /* Overflow Classes */
+        .overflow-hidden { overflow: hidden; }
+        .overflow-x-hidden { overflow-x: hidden; }
+        
+        /* Z-index Classes */
+        .z-10 { z-index: 10; }
+        .z-50 { z-index: 99999; }
+        
+        /* Responsive Classes */
+        @media (min-width: 640px) {
+            .sm\:flex-row { flex-direction: row; }
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .lg\:text-left { text-align: left; }
+            .lg\:justify-start { justify-content: flex-start; }
+            .lg\:col-span-2 { grid-column: span 2 / span 2; }
+        }
+        
+        /* Hover Classes */
+        .hover\:bg-accent\/90:hover { background-color: hsl(134 61% 41% / 0.9); }
+        .hover\:bg-primary\/20:hover { background-color: hsl(154 55% 18% / 0.2); }
+        .hover\:bg-primary-foreground\/10:hover { background-color: hsl(0 0% 100% / 0.1); }
+        .hover\:bg-primary-foreground\/15:hover { background-color: hsl(0 0% 100% / 0.15); }
+        .hover\:bg-primary-foreground\/20:hover { background-color: hsl(0 0% 100% / 0.2); }
+        .hover\:bg-secondary-foreground\/15:hover { background-color: hsl(0 0% 100% / 0.15); }
+        .hover\:text-accent:hover { color: var(--accent); }
+        .hover\:shadow-climate:hover { box-shadow: 0 10px 30px -5px hsl(154 55% 18% / 0.2); }
+        .hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .hover\:shadow-glow:hover { box-shadow: 0 0 40px hsl(134 61% 41% / 0.3); }
+        .transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .duration-200 { transition-duration: 200ms; }
+        .duration-300 { transition-duration: 300ms; }
+        
+        /* Special Classes */
+        .backdrop-blur-sm { backdrop-filter: blur(4px); }
+        .backdrop-blur-md { backdrop-filter: blur(12px); }
+        .aspect-video { aspect-ratio: 16 / 9; }
+        .inline-block { display: inline-block; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .mt-0\.5 { margin-top: 0.125rem; }
+        .leading-tight { line-height: 1.25; }
+        .text-\[5px\] { border-radius: 5px; }
+        
+        /* Enhanced Card Styling */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -5px hsl(154 55% 18% / 0.15);
+        }
+        
+        /* Enhanced Floating Elements */
+        .floating-element {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Better Spacing */
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        
+        /* Enhanced Typography */
+        .text-balance { text-wrap: balance; }
+        
+        /* Better Grid Gaps */
+        .gap-16 { gap: 4rem; }
+        .gap-12 { gap: 3rem; }
+        
+        /* Missing Utility Classes */
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-md { max-width: 28rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .leading-relaxed { line-height: 1.625; }
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .tracking-wide { letter-spacing: 0.025em; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .border-l-4 { border-left-width: 4px; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-8 { padding: 2rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mb-20 { margin-bottom: 5rem; }
+        .mt-12 { margin-top: 3rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-start { justify-content: flex-start; }
+        .flex-1 { flex: 1 1 0%; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .h-6 { height: 1.5rem; }
+        .h-8 { height: 2rem; }
+        .w-6 { width: 1.5rem; }
+        .w-8 { width: 2rem; }
+        .opacity-90 { opacity: 0.9; }
+        .animate-slide-up { animation: slideUp 0.5s ease-out; }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+        .animate-scale-in { animation: scaleIn 0.4s ease-out; }
+        
+        .scale-110 {
+            transform: scale(1.1);
+        }
+        
+        /* Text decoration utilities */
+        .underline { text-decoration: underline; }
+        .text-underline-offset-4 { text-underline-offset: 4px; }
+        .decoration-2 { text-decoration-thickness: 2px; }
+        
+        /* Button Component Classes */
+        .inline-flex { display: inline-flex; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 0.5rem; }
+        .whitespace-nowrap { white-space: nowrap; }
+        .rounded-md { border-radius: 0.375rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .font-medium { font-weight: 500; }
+        .ring-offset-background { --tw-ring-offset-color: hsl(var(--background)); }
+        .transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .focus-visible\:outline-none:focus-visible { outline: 2px solid transparent; outline-offset: 2px; }
+        .focus-visible\:ring-2:focus-visible { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+        .focus-visible\:ring-ring:focus-visible { --tw-ring-color: hsl(var(--ring)); }
+        .focus-visible\:ring-offset-2:focus-visible { --tw-ring-offset-width: 2px; }
+        .disabled\:pointer-events-none:disabled { pointer-events: none; }
+        .disabled\:opacity-50:disabled { opacity: 0.5; }
+        .h-11 { height: 2.75rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .h-5 { height: 1.25rem; }
+        .w-5 { width: 1.25rem; }
+        
+        /* Opacity Classes */
+        .opacity-10 { opacity: 0.1; }
+        .opacity-20 { opacity: 0.2; }
+        .opacity-30 { opacity: 0.3; }
+        .opacity-40 { opacity: 0.4; }
+        .opacity-50 { opacity: 0.5; }
+        .opacity-60 { opacity: 0.6; }
+        .opacity-70 { opacity: 0.7; }
+        .opacity-80 { opacity: 0.8; }
+        .opacity-90 { opacity: 0.9; }
+        
+        /* Text Opacity Classes */
+        .text-primary-foreground\/80 { color: hsl(var(--primary-foreground) / 0.8); }
+        .text-primary-foreground\/90 { color: hsl(var(--primary-foreground) / 0.9); }
+        .text-secondary-foreground\/80 { color: hsl(var(--secondary-foreground) / 0.8); }
+        .text-secondary-foreground\/70 { color: hsl(var(--secondary-foreground) / 0.7); }
+        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+        
+        /* Background Opacity Classes */
+        .bg-primary\/10 { background-color: hsl(var(--primary) / 0.1); }
+        .bg-primary\/20 { background-color: hsl(var(--primary) / 0.2); }
+        .bg-accent\/10 { background-color: hsl(var(--accent) / 0.1); }
+        .bg-accent\/20 { background-color: hsl(var(--accent) / 0.2); }
+        .bg-destructive\/5 { background-color: hsl(var(--destructive) / 0.05); }
+        .bg-destructive\/10 { background-color: hsl(var(--destructive) / 0.1); }
+        .bg-secondary\/30 { background-color: hsl(var(--secondary) / 0.3); }
+        .bg-primary-foreground\/10 { background-color: hsl(var(--primary-foreground) / 0.1); }
+        .bg-primary-foreground\/15 { background-color: hsl(var(--primary-foreground) / 0.15); }
+        .bg-primary-foreground\/20 { background-color: hsl(var(--primary-foreground) / 0.2); }
+        .bg-secondary-foreground\/10 { background-color: hsl(var(--secondary-foreground) / 0.1); }
+        .bg-secondary-foreground\/15 { background-color: hsl(var(--secondary-foreground) / 0.15); }
+        .bg-secondary-foreground\/20 { background-color: hsl(var(--secondary-foreground) / 0.2); }
+        
+        /* Border Opacity Classes */
+        .border-primary\/20 { border-color: hsl(var(--primary) / 0.2); }
+        .border-primary-foreground\/20 { border-color: hsl(var(--primary-foreground) / 0.2); }
+        .border-primary-foreground\/30 { border-color: hsl(var(--primary-foreground) / 0.3); }
+        .border-secondary-foreground\/20 { border-color: hsl(var(--secondary-foreground) / 0.2); }
+        .border-border\/50 { border-color: hsl(var(--border) / 0.5); }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- Hero Section -->
+    <section class="min-h-screen gradient-hero relative overflow-hidden flex items-center">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(134_61%_41%)_0%,transparent_50%)]"></div>
+        </div>
+        
+        <!-- Floating Navigation -->
+        <nav class="fixed top-8" style="left: 50%; transform: translateX(-50%); z-index: 99999;">
+            <div class="floating-nav">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#features">Features</a>
+                <a href="#impact">Impact</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#future">Future</a>
+            </div>
+        </nav>
+        
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="text-left animate-fade-in">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="material-symbols-outlined text-accent" style="font-size: 32px;">security</span>
+                        <span class="text-primary-foreground/80 font-medium tracking-wide">EARLY WARNING SYSTEM</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
+                        ClimateGuard
+                        <span class="text-accent">AI</span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl text-primary-foreground/90 mb-8 leading-relaxed max-w-2xl">
+                        Protecting communities with AI-powered climate disaster early warnings. 
+                        Real-time monitoring, intelligent alerts, and local capacity building.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-accent hover:bg-accent/90 text-accent-foreground shadow-glow hover:shadow-climate transition-all duration-300 animate-pulse-glow inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[5px] text-sm font-bold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-12 px-8" style="border: none !important;">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">download</span>
+                            Download App
+                            <span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+                        </button>
+                        
+                        <button class="border border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[5px] text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-12 px-8" style="background: rgba(255, 255, 255, 0.1);">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">code</span>
+                            View on GitHub
+                        </button>
+                    </div>
+                    
+                    <div class="mt-12 grid grid-cols-3 gap-8 text-left">
+                        <div>
+                            <div class="text-3xl font-bold text-accent">2,500+</div>
+                            <div class="text-primary-foreground/70">People Protected</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-accent">85%</div>
+                            <div class="text-primary-foreground/70">Accuracy Rate</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-accent">24/7</div>
+                            <div class="text-primary-foreground/70">Monitoring</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Preview -->
+                <div class="relative animate-scale-in">
+                    <div class="relative rounded-2xl overflow-hidden shadow-climate border border-primary-foreground/20 transform scale-110">
+                        <img 
+                            src="https://images.unsplash.com/photo-1541710005980-7ea80ff232d6?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            alt="ClimateGuard AI Dashboard showing real-time climate monitoring and disaster management interface"
+                            class="w-full h-auto"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-glow animate-pulse-glow">
+                        <div class="text-sm font-medium">Live Alert</div>
+                        <div class="text-xs">Flood Risk: Medium</div>
+                    </div>
+                    
+                    <div class="absolute -bottom-4 -left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-tech">
+                        <div class="text-sm font-medium">AI Status</div>
+                        <div class="text-xs">Models Active: 5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-20 bg-muted/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-destructive" style="font-size: 24px;">warning</span>
+                    <span class="text-muted-foreground font-medium tracking-wide">THE CHALLENGE</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">Climate Risks in Sri Lanka</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    Sri Lanka faces increasing climate disasters with limited early warning systems. 
+                    Communities need reliable, timely alerts to protect lives and livelihoods.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 card-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-destructive/10 rounded-xl">
+                            <span class="material-symbols-outlined text-destructive" style="font-size: 32px;">flood</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-foreground">Flooding</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Annual monsoons cause devastating floods affecting thousands of communities across Sri Lanka.
+                    </p>
+                    <div class="bg-destructive/5 p-4 rounded-lg border-l-4 border-destructive">
+                        <p class="text-sm font-medium text-destructive">60% increase in flood frequency since 2010</p>
+                    </div>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 card-hover" style="animation-delay: 0.1s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-destructive/10 rounded-xl">
+                            <span class="material-symbols-outlined text-destructive" style="font-size: 32px;">thunderstorm</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-foreground">Severe Weather</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Unpredictable weather patterns and extreme rainfall events are becoming more common.
+                    </p>
+                    <div class="bg-destructive/5 p-4 rounded-lg border-l-4 border-destructive">
+                        <p class="text-sm font-medium text-destructive">3x more extreme weather events annually</p>
+                    </div>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 card-hover" style="animation-delay: 0.2s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-destructive/10 rounded-xl">
+                            <span class="material-symbols-outlined text-destructive" style="font-size: 32px;">cyclone</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-foreground">Cyclones</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Tropical cyclones threaten coastal communities with limited early warning infrastructure.
+                    </p>
+                    <div class="bg-destructive/5 p-4 rounded-lg border-l-4 border-destructive">
+                        <p class="text-sm font-medium text-destructive">2.1M people in high-risk coastal areas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="bg-card p-8 rounded-2xl shadow-elegant border border-border/50 animate-scale-in card-hover">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-destructive mb-2">100K+</div>
+                        <div class="text-muted-foreground">People Affected Annually</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-destructive mb-2">$2.5B</div>
+                        <div class="text-muted-foreground">Economic Losses/Year</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-destructive mb-2">30min</div>
+                        <div class="text-muted-foreground">Current Warning Time</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-destructive mb-2">25%</div>
+                        <div class="text-muted-foreground">Areas Without Coverage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-20 gradient-subtle">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-primary" style="font-size: 24px;">lightbulb</span>
+                    <span class="text-muted-foreground font-medium tracking-wide">OUR SOLUTION</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">AI-Driven Early Warning System</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    ClimateGuard AI combines cutting-edge technology with local knowledge to create 
+                    a comprehensive disaster management platform that saves lives.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <!-- Image -->
+                <div class="relative animate-scale-in">
+                    <div class="relative rounded-2xl overflow-hidden shadow-climate">
+                        <img 
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&h=600&fit=crop&crop=center" 
+                            alt="IoT sensors and monitoring equipment deployed in Sri Lankan landscape for climate monitoring"
+                            class="w-full h-auto"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Floating Stats -->
+                    <div class="absolute -top-6 -right-6 bg-green-500 text-white px-6 py-3 rounded-xl shadow-climate floating-element">
+                        <div class="text-lg font-bold">Real-time Data</div>
+                        <div class="text-sm opacity-90">24/7 Monitoring</div>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start animate-slide-up">
+                        <div class="flex-shrink-0 p-4 bg-primary/10 rounded-xl">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">lightbulb</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">AI-Powered Predictions</h3>
+                                <span class="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">85% Accuracy</span>
+                            </div>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Advanced machine learning models analyze weather patterns, sensor data, and historical trends to predict climate disasters with 85% accuracy.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start animate-slide-up" style="animation-delay: 0.1s">
+                        <div class="flex-shrink-0 p-4 bg-primary/10 rounded-xl">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">wifi</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">IoT Sensor Network</h3>
+                                <span class="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">500+ Sensors</span>
+                            </div>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Distributed network of weather stations, water level sensors, and environmental monitors providing real-time data across Sri Lanka.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start animate-slide-up" style="animation-delay: 0.2s">
+                        <div class="flex-shrink-0 p-4 bg-primary/10 rounded-xl">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">groups</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">Community Alerts</h3>
+                                <span class="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">Multi-Language</span>
+                            </div>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Multi-channel alert system delivering warnings via SMS, mobile app, radio, and community speakers in local languages.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start animate-slide-up" style="animation-delay: 0.3s">
+                        <div class="flex-shrink-0 p-4 bg-primary/10 rounded-xl">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">bolt</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">Rapid Response</h3>
+                                <span class="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">&lt; 5min Response</span>
+                            </div>
+                            <p class="text-muted-foreground leading-relaxed">
+                                Automated alert generation and distribution within minutes of threat detection, giving communities crucial time to prepare.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="bg-card p-8 rounded-2xl shadow-elegant border border-border/50 animate-fade-in card-hover">
+                <h3 class="text-2xl font-bold text-center mb-8 text-foreground">Powered by Advanced Technology</h3>
+                <div class="grid md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-primary mb-2">ML/AI</div>
+                        <div class="text-sm text-muted-foreground">Machine Learning Models</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-secondary mb-2">IoT</div>
+                        <div class="text-sm text-muted-foreground">Sensor Networks</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-accent mb-2">Cloud</div>
+                        <div class="text-sm text-muted-foreground">Scalable Infrastructure</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-primary mb-2">Mobile</div>
+                        <div class="text-sm text-muted-foreground">Cross-platform Apps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-muted/20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-accent" style="font-size: 24px;">security</span>
+                    <span class="text-muted-foreground font-medium tracking-wide">KEY FEATURES</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">Comprehensive Protection</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    Our platform provides end-to-end disaster management capabilities, 
+                    from early detection to community response coordination.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">trending_up</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground">Real-time Alerts</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Instant notifications delivered through multiple channels including SMS, push notifications, and community sirens.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Multi-channel delivery</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Localized warnings</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Severity-based alerts</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 group" style="animation-delay: 0.1s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">bar_chart</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground">Interactive Dashboard</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Comprehensive monitoring interface for authorities and communities to track threats and response activities.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Live data visualization</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Threat mapping</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Historical analysis</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 group" style="animation-delay: 0.2s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">school</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground">Capacity Building</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Training programs and educational resources to strengthen local disaster preparedness and response capabilities.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Community training</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Emergency protocols</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Preparedness planning</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 group" style="animation-delay: 0.3s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">security</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground">Risk Assessment</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        Advanced risk modeling that considers local geography, infrastructure, and population density for precise threat evaluation.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Precision mapping</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Vulnerability analysis</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Infrastructure assessment</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 group" style="animation-delay: 0.4s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">schedule</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground">Early Detection</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        AI models process environmental data to detect potential disasters hours or days before they occur.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Predictive modeling</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Pattern recognition</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Trend analysis</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-card p-8 rounded-2xl shadow-elegant hover:shadow-climate transition-all duration-300 animate-slide-up border border-border/50 group" style="animation-delay: 0.5s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-primary" style="font-size: 32px;">location_on</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-foreground">Location-based Warnings</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6 leading-relaxed">
+                        GPS-enabled alerts that provide specific guidance based on user location and local evacuation routes.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Personalized routing</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Safe zone mapping</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-sm">
+                            <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                            <span class="text-muted-foreground">Dynamic updates</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature Highlight -->
+            <div class="mt-16 bg-gradient-to-br from-primary to-accent p-12 rounded-3xl text-center animate-scale-in shadow-2xl border border-primary/20">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-4xl lg:text-5xl font-bold text-white mb-8">Why Choose ClimateGuard AI?</h3>
+                    <div class="grid md:grid-cols-3 gap-12 text-white">
+                        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            <div class="text-5xl lg:text-6xl font-bold mb-4 text-white">5min</div>
+                            <div class="text-lg font-medium text-white/90">Average Alert Time</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            <div class="text-5xl lg:text-6xl font-bold mb-4 text-white">99.9%</div>
+                            <div class="text-lg font-medium text-white/90">System Uptime</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            <div class="text-5xl lg:text-6xl font-bold mb-4 text-white">15+</div>
+                            <div class="text-lg font-medium text-white/90">Districts Covered</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-20 gradient-tech">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <svg class="h-6 w-6 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    <span class="text-secondary-foreground/80 font-medium tracking-wide">REAL IMPACT</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-secondary-foreground mb-6">Measuring Our Success</h2>
+                <p class="text-xl text-secondary-foreground/80 max-w-3xl mx-auto leading-relaxed">
+                    Tangible results from our AI-powered disaster management platform 
+                    across Sri Lankan communities.
+                </p>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-slide-up hover:bg-secondary-foreground/15 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-secondary-foreground/20 rounded-xl">
+                            <svg class="h-8 w-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold text-secondary-foreground">2,500+</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary-foreground mb-2">People Protected</h3>
+                    <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Individuals receiving real-time climate alerts</p>
+                    <div class="bg-accent/20 px-3 py-1 rounded-full inline-block">
+                        <span class="text-sm font-medium text-secondary-foreground">+150% this year</span>
+                    </div>
+                </div>
+
+                <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-slide-up hover:bg-secondary-foreground/15 transition-all duration-300" style="animation-delay: 0.1s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-secondary-foreground/20 rounded-xl">
+                            <svg class="h-8 w-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold text-secondary-foreground">85%</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary-foreground mb-2">Prediction Accuracy</h3>
+                    <p class="text-secondary-foreground/70 mb-4 leading-relaxed">AI model precision in disaster forecasting</p>
+                    <div class="bg-accent/20 px-3 py-1 rounded-full inline-block">
+                        <span class="text-sm font-medium text-secondary-foreground">Improving monthly</span>
+                    </div>
+                </div>
+
+                <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-slide-up hover:bg-secondary-foreground/15 transition-all duration-300" style="animation-delay: 0.2s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-secondary-foreground/20 rounded-xl">
+                            <svg class="h-8 w-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold text-secondary-foreground">4.2min</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary-foreground mb-2">Average Alert Time</h3>
+                    <p class="text-secondary-foreground/70 mb-4 leading-relaxed">From detection to community notification</p>
+                    <div class="bg-accent/20 px-3 py-1 rounded-full inline-block">
+                        <span class="text-sm font-medium text-secondary-foreground">60% faster than traditional</span>
+                    </div>
+                </div>
+
+                <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-slide-up hover:bg-secondary-foreground/15 transition-all duration-300" style="animation-delay: 0.3s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-secondary-foreground/20 rounded-xl">
+                            <svg class="h-8 w-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold text-secondary-foreground">15</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary-foreground mb-2">Districts Covered</h3>
+                    <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Administrative regions with active monitoring</p>
+                    <div class="bg-accent/20 px-3 py-1 rounded-full inline-block">
+                        <span class="text-sm font-medium text-secondary-foreground">Expansion ongoing</span>
+                    </div>
+                </div>
+
+                <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-slide-up hover:bg-secondary-foreground/15 transition-all duration-300" style="animation-delay: 0.4s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-secondary-foreground/20 rounded-xl">
+                            <svg class="h-8 w-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold text-secondary-foreground">500+</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary-foreground mb-2">IoT Sensors Deployed</h3>
+                    <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Environmental monitoring devices active</p>
+                    <div class="bg-accent/20 px-3 py-1 rounded-full inline-block">
+                        <span class="text-sm font-medium text-secondary-foreground">Growing network</span>
+                    </div>
+                </div>
+
+                <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-slide-up hover:bg-secondary-foreground/15 transition-all duration-300" style="animation-delay: 0.5s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-secondary-foreground/20 rounded-xl">
+                            <svg class="h-8 w-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <div class="text-4xl font-bold text-secondary-foreground">24/7</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary-foreground mb-2">Continuous Monitoring</h3>
+                    <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Round-the-clock threat detection</p>
+                    <div class="bg-accent/20 px-3 py-1 rounded-full inline-block">
+                        <span class="text-sm font-medium text-secondary-foreground">99.9% uptime</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="bg-secondary-foreground/10 backdrop-blur-sm p-8 rounded-2xl border border-secondary-foreground/20 animate-scale-in">
+                <h3 class="text-2xl font-bold text-secondary-foreground mb-8 text-center">Recent Achievements</h3>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-secondary-foreground mb-3">Early Flood Detection Success</h4>
+                        <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Successfully predicted and alerted for 12 major flood events in 2024</p>
+                        <div class="bg-accent/20 px-4 py-2 rounded-lg inline-block">
+                            <span class="text-sm font-medium text-secondary-foreground">Zero casualties in alerted areas</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-secondary-foreground mb-3">Community Preparedness Training</h4>
+                        <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Conducted disaster preparedness workshops in 8 high-risk communities</p>
+                        <div class="bg-accent/20 px-4 py-2 rounded-lg inline-block">
+                            <span class="text-sm font-medium text-secondary-foreground">1,200+ people trained</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-secondary-foreground mb-3">Technology Recognition</h4>
+                        <p class="text-secondary-foreground/70 mb-4 leading-relaxed">Featured in UN Disaster Risk Reduction best practices report</p>
+                        <div class="bg-accent/20 px-4 py-2 rounded-lg inline-block">
+                            <span class="text-sm font-medium text-secondary-foreground">International recognition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-16 animate-fade-in">
+                <h3 class="text-2xl font-bold text-secondary-foreground mb-4">Join Our Growing Community</h3>
+                <p class="text-secondary-foreground/80 mb-8 max-w-2xl mx-auto">
+                    Be part of the solution in building climate-resilient communities across Sri Lanka.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="px-8 py-3 bg-secondary-foreground/10 backdrop-blur-sm border border-secondary-foreground/20 text-secondary-foreground rounded-lg hover:bg-secondary-foreground/20 transition-colors">
+                        Get Started Today
+                    </button>
+                    <button class="px-8 py-3 bg-secondary-foreground/10 backdrop-blur-sm border border-secondary-foreground/20 text-secondary-foreground rounded-lg hover:bg-secondary-foreground/20 transition-colors">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="py-20 bg-card">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-primary" style="font-size: 24px;">lightbulb</span>
+                    <span class="text-muted-foreground font-medium tracking-wide">HOW IT WORKS</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">AI-Powered Workflow</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    From data collection to community response, our integrated system ensures 
+                    rapid and effective disaster management.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+                <!-- Workflow Visualization -->
+                <div class="relative animate-scale-in">
+                    <div class="relative rounded-2xl overflow-hidden shadow-tech">
+                        <img 
+                            src="https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            alt="AI workflow visualization showing data processing and alert generation for climate disaster management"
+                            class="w-full h-auto"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-secondary/30 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Floating Process Indicator -->
+                    <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-6 py-3 rounded-xl shadow-climate">
+                        <div class="text-lg font-bold">Processing Speed</div>
+                        <div class="text-sm opacity-90">&lt; 5 minutes end-to-end</div>
+                    </div>
+                </div>
+
+                <!-- Steps -->
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start animate-slide-up">
+                        <div class="flex-shrink-0 relative">
+                            <div class="p-4 bg-primary/10 rounded-xl border border-primary/20">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 32px;">storage</span>
+                            </div>
+                            <div class="absolute top-16 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-gradient-to-b from-primary/40 to-transparent"></div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">Data Collection</h3>
+                                <span class="text-2xl font-bold text-primary/30">01</span>
+                            </div>
+                            <p class="text-muted-foreground mb-4 leading-relaxed">
+                                IoT sensors, weather stations, and satellite data continuously feed environmental information into our system.
+                            </p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Weather patterns</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Water levels</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Soil moisture</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Seismic activity</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start animate-slide-up" style="animation-delay: 0.1s">
+                        <div class="flex-shrink-0 relative">
+                            <div class="p-4 bg-primary/10 rounded-xl border border-primary/20">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 32px;">psychology</span>
+                            </div>
+                            <div class="absolute top-16 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-gradient-to-b from-primary/40 to-transparent"></div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">AI Analysis</h3>
+                                <span class="text-2xl font-bold text-primary/30">02</span>
+                            </div>
+                            <p class="text-muted-foreground mb-4 leading-relaxed">
+                                Machine learning models process real-time data to identify patterns and predict potential climate disasters.
+                            </p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Pattern recognition</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Predictive modeling</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Risk assessment</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Severity calculation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start animate-slide-up" style="animation-delay: 0.2s">
+                        <div class="flex-shrink-0 relative">
+                            <div class="p-4 bg-primary/10 rounded-xl border border-primary/20">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 32px;">notifications</span>
+                            </div>
+                            <div class="absolute top-16 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-gradient-to-b from-primary/40 to-transparent"></div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">Alert Generation</h3>
+                                <span class="text-2xl font-bold text-primary/30">03</span>
+                            </div>
+                            <p class="text-muted-foreground mb-4 leading-relaxed">
+                                Automated systems generate location-specific alerts with recommended actions for affected communities.
+                            </p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Targeted messaging</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Severity levels</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Action recommendations</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Evacuation routes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 items-start animate-slide-up" style="animation-delay: 0.3s">
+                        <div class="flex-shrink-0 relative">
+                            <div class="p-4 bg-primary/10 rounded-xl border border-primary/20">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 32px;">dashboard</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-xl font-bold text-foreground">Dashboard & Response</h3>
+                                <span class="text-2xl font-bold text-primary/30">04</span>
+                            </div>
+                            <p class="text-muted-foreground mb-4 leading-relaxed">
+                                Authorities and communities access real-time information through intuitive dashboards and mobile apps.
+                            </p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Live monitoring</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Resource coordination</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Response tracking</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <div class="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                                    <span class="text-muted-foreground">Recovery planning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Flow -->
+            <div class="bg-muted/30 p-8 rounded-2xl border border-border/50 animate-fade-in">
+                <h3 class="text-2xl font-bold text-center mb-8 text-foreground">
+                    Complete Process Flow
+                </h3>
+                
+                <div class="bg-gray-100 p-8 rounded-2xl border border-gray-200 shadow-md">
+                    <div class="flex items-center justify-between gap-6">
+                        <!-- Step 1: Data Input -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 32px;">storage</span>
+                            </div>
+                            <div class="font-medium text-foreground">Data Input</div>
+                            <div class="text-sm text-muted-foreground">Continuous</div>
+                        </div>
+                        
+                        <!-- Arrow Right -->
+                        <span class="material-symbols-outlined text-muted-foreground" style="font-size: 24px;">arrow_forward</span>
+                        
+                        <!-- Step 2: AI Processing -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-3">
+                                <span class="material-symbols-outlined text-secondary" style="font-size: 32px;">psychology</span>
+                            </div>
+                            <div class="font-medium text-foreground">AI Processing</div>
+                            <div class="text-sm text-muted-foreground">&lt; 2 minutes</div>
+                        </div>
+                        
+                        <!-- Arrow Right -->
+                        <span class="material-symbols-outlined text-muted-foreground" style="font-size: 24px;">arrow_forward</span>
+                        
+                        <!-- Step 3: Alert Dispatch -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-3">
+                                <span class="material-symbols-outlined text-accent" style="font-size: 32px;">notifications</span>
+                            </div>
+                            <div class="font-medium text-foreground">Alert Dispatch</div>
+                            <div class="text-sm text-muted-foreground">&lt; 1 minute</div>
+                        </div>
+                        
+                        <!-- Arrow Right -->
+                        <span class="material-symbols-outlined text-muted-foreground" style="font-size: 24px;">arrow_forward</span>
+                        
+                        <!-- Step 4: Response -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-3">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 32px;">bar_chart</span>
+                            </div>
+                            <div class="font-medium text-foreground">Response</div>
+                            <div class="text-sm text-muted-foreground">Immediate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section id="future" class="py-20 gradient-subtle">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <svg class="h-6 w-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span class="text-muted-foreground font-medium tracking-wide">FUTURE VISION</span>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">Building Climate Resilience</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                    Our roadmap extends beyond Sri Lanka to create a global network of 
+                    climate-resilient communities powered by AI and local knowledge.
+                </p>
+            </div>
+
+            <!-- Vision Timeline -->
+            <div class="space-y-12 mb-20">
+                <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-primary/10 rounded-xl">
+                                <svg class="h-10 w-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-foreground">Regional Expansion</h3>
+                                <span class="text-accent font-medium">2025-2026</span>
+                            </div>
+                        </div>
+                        <p class="text-muted-foreground text-lg leading-relaxed mb-6">
+                            Scaling ClimateGuard AI across South and Southeast Asia, adapting to local climate patterns and disaster types.
+                        </p>
+                        <div class="bg-accent/10 p-4 rounded-lg border-l-4 border-accent">
+                            <div class="font-medium text-foreground">Expected Impact:</div>
+                            <div class="text-accent">50M+ people protected</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl flex items-center justify-center border border-border/50 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Regional Expansion - Global map showing South and Southeast Asia expansion" 
+                                 class="w-full h-full object-cover rounded-2xl">
+                        </div>
+                        <div class="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-glow">
+                            <div class="text-sm font-medium">2025-2026</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up lg:grid-flow-col-dense" style="animation-delay: 0.2s">
+                    <div class="lg:col-start-2">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-primary/10 rounded-xl">
+                                <svg class="h-10 w-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-foreground">Smart City Integration</h3>
+                                <span class="text-accent font-medium">2025</span>
+                            </div>
+                        </div>
+                        <p class="text-muted-foreground text-lg leading-relaxed mb-6">
+                            Embedding our early warning systems into smart city infrastructure for automated emergency response protocols.
+                        </p>
+                        <div class="bg-accent/10 p-4 rounded-lg border-l-4 border-accent">
+                            <div class="font-medium text-foreground">Expected Impact:</div>
+                            <div class="text-accent">15 cities connected</div>
+                        </div>
+                    </div>
+                    <div class="lg:col-start-1">
+                        <div class="relative">
+                            <div class="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl flex items-center justify-center border border-border/50 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Smart City Integration - Modern city skyline with smart infrastructure" 
+                                     class="w-full h-full object-cover rounded-2xl">
+                            </div>
+                            <div class="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-glow">
+                                <div class="text-sm font-medium">2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up" style="animation-delay: 0.4s">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-primary/10 rounded-xl">
+                                <svg class="h-10 w-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-foreground">Global Resilience Hub</h3>
+                                <span class="text-accent font-medium">2026-2027</span>
+                            </div>
+                        </div>
+                        <p class="text-muted-foreground text-lg leading-relaxed mb-6">
+                            Establishing Sri Lanka as a center of excellence for climate disaster management and AI-driven early warning systems.
+                        </p>
+                        <div class="bg-accent/10 p-4 rounded-lg border-l-4 border-accent">
+                            <div class="font-medium text-foreground">Expected Impact:</div>
+                            <div class="text-accent">Knowledge sharing platform</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl flex items-center justify-center border border-border/50 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Global Resilience Hub - Network connectivity and knowledge sharing platform" 
+                                 class="w-full h-full object-cover rounded-2xl">
+                        </div>
+                        <div class="absolute -top-4 -right-4 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-glow">
+                            <div class="text-sm font-medium">2026-2027</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation Preview -->
+            <div class="bg-card p-8 rounded-2xl shadow-elegant border border-border/50 animate-scale-in">
+                <h3 class="text-2xl font-bold text-center mb-8 text-foreground">Upcoming Innovations</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="p-6 bg-primary/5 rounded-xl mb-4 inline-block">
+                            <svg class="h-12 w-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-foreground mb-3">Satellite Integration</h4>
+                        <p class="text-muted-foreground">Direct satellite data feeds for enhanced prediction accuracy</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="p-6 bg-primary/5 rounded-xl mb-4 inline-block">
+                            <svg class="h-12 w-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-foreground mb-3">Precision Alerts</h4>
+                        <p class="text-muted-foreground">Household-level threat assessment and personalized warnings</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="p-6 bg-primary/5 rounded-xl mb-4 inline-block">
+                            <svg class="h-12 w-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-foreground mb-3">Community AI</h4>
+                        <p class="text-muted-foreground">Local knowledge integration with AI for improved predictions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partnership Call -->
+            <div class="text-center mt-16 animate-fade-in">
+                <div class="bg-gradient-climate p-8 rounded-2xl text-white">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Partner With Us</h3>
+                    <p class="text-white/90 mb-8 max-w-2xl mx-auto">
+                        Join governments, NGOs, and technology partners in building the future 
+                        of climate disaster management. Together, we can create resilient communities worldwide.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/40 text-white rounded-lg hover:bg-white/30 transition-colors shadow-lg">
+                            Become a Partner
+                        </button>
+                        <button class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/40 text-white rounded-lg hover:bg-white/30 transition-colors shadow-lg">
+                            Learn About Partnerships
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-primary-foreground">
+        <div class="container mx-auto px-4 py-16">
+            <div class="grid lg:grid-cols-4 gap-12">
+                <!-- Brand & Description -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-accent" style="font-size: 40px;">security</span>
+                        <span class="text-3xl font-bold">ClimateGuard AI</span>
+                    </div>
+                    
+                    <p class="text-primary-foreground/80 text-lg leading-relaxed mb-8 max-w-md">
+                        Developed by Bluechip Technologies Asia. Protecting communities with AI-powered climate disaster early warnings.
+                    </p>
+                    
+                    <div class="space-y-2">
+                        <h4 class="font-medium text-primary-foreground/90 mb-4">Contact Information</h4>
+                        <div class="flex items-center gap-3">
+                            <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-primary-foreground/80">Singapore: +65 83760864</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-primary-foreground/80">Sri Lanka: +94 716092918</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-primary-foreground/80">US: +1 (628) 251-1362</span>
+                        </div>
+                        <div class="space-y-2 mt-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span class="text-primary-foreground/80">hello@bluechiptech.asia</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span class="text-primary-foreground/80">hello@bluechip-tech.co.uk</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span class="text-primary-foreground/80">hello@bluechip-inc.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Locations -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Our Locations</h3>
+                    <div class="space-y-3">
+                        <div class="text-sm">
+                            <div class="flex items-start gap-2">
+                                <svg class="h-4 w-4 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-medium text-primary-foreground">Hong Kong</p>
+                                    <p class="text-primary-foreground/80 leading-tight">11/F Tai Yau, No 181 Johnton Rd, Wanchai, Hong Kong</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-sm">
+                            <div class="flex items-start gap-2">
+                                <svg class="h-4 w-4 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-medium text-primary-foreground">Sri Lanka</p>
+                                    <p class="text-primary-foreground/80 leading-tight">Level 37, West Tower, World Trade Center, Colombo 01, Sri Lanka</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-sm">
+                            <div class="flex items-start gap-2">
+                                <svg class="h-4 w-4 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-medium text-primary-foreground">Singapore</p>
+                                    <p class="text-primary-foreground/80 leading-tight">265 Joo Chiat Road, Singapore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Networks -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Our Social Networks</h3>
+                    <div class="flex gap-3">
+                        <a href="#" class="p-2 bg-primary-foreground/10 rounded-lg hover:bg-primary-foreground/20 transition-colors duration-200" aria-label="Twitter">
+                            <svg class="h-5 w-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="p-2 bg-primary-foreground/10 rounded-lg hover:bg-primary-foreground/20 transition-colors duration-200" aria-label="LinkedIn">
+                            <svg class="h-5 w-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="p-2 bg-primary-foreground/10 rounded-lg hover:bg-primary-foreground/20 transition-colors duration-200" aria-label="Facebook">
+                            <svg class="h-5 w-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="p-2 bg-primary-foreground/10 rounded-lg hover:bg-primary-foreground/20 transition-colors duration-200" aria-label="GitHub">
+                            <svg class="h-5 w-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Locations -->
+            <div class="mt-12 pt-8 border-t border-primary-foreground/20">
+                <h3 class="text-xl font-bold mb-6 text-center">Global Presence</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <p class="font-medium text-primary-foreground">USA</p>
+                        </div>
+                        <p class="text-primary-foreground/80 text-sm">16192 Coastal Highway, Lewes, DE, 19958, USA</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <p class="font-medium text-primary-foreground">UK</p>
+                        </div>
+                        <p class="text-primary-foreground/80 text-sm">6th Floor, 9 Appold Street, London, UK</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <svg class="h-4 w-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <p class="font-medium text-primary-foreground">India</p>
+                        </div>
+                        <p class="text-primary-foreground/80 text-sm">816, Nirmal Corporate Center, LBS Road, Mulund-West, Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-8 border-t border-primary-foreground/20 text-center">
+                <p class="text-primary-foreground/60">
+                    © Copyright 2025 Bluechip Technologies Asia. All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
